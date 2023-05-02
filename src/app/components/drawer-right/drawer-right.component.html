@@ -1,0 +1,23 @@
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+/>
+
+<div class="Drawer-right">
+  <kendo-drawer-container>
+    <kendo-drawer
+      #drawerRight
+      mode="overlay"
+      [(expanded)]="expandedRight"
+      fillMode="flat"
+    >
+      <ng-template kendoDrawerTemplate>
+        <span> location</span>
+      </ng-template>
+    </kendo-drawer>
+
+    <kendo-drawer-content style="width: 100%">
+      <ng-content seletor="[content]"></ng-content>
+    </kendo-drawer-content>
+  </kendo-drawer-container>
+</div>

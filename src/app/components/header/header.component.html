@@ -1,0 +1,25 @@
+<div class="Wrapper-header">
+  <kendo-buttongroup selection="single" class="buttongroup">
+    <button
+      *ngFor="let item of NavItems"
+      kendoButton
+      [toggleable]="true"
+      [selected]="item.selected"
+      (click)="selected(item.text)"
+    >
+      {{ item.text }}
+    </button>
+  </kendo-buttongroup>
+  <div class="action">
+    <div>
+      <img src="assets/images/search.svg" alt="My Image" />
+    </div>
+    <div class="bell">
+      <img src="assets/images/bell.svg" alt="My Image" />
+      <p class="noticeBell">15</p>
+    </div>
+    <div>
+      <img src="assets/images/avatar.svg" class="avatar" alt="Avatar" />
+    </div>
+  </div>
+</div>

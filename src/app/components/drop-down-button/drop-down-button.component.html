@@ -1,0 +1,15 @@
+<div class="Location-tool tool">
+  <kendo-dropdownbutton
+    class="DropDownButton"
+    imageUrl="assets/images/ellipse.svg"
+    [data]="OptionTool"
+    [popupSettings]="{
+      animate: animate,
+      popupClass: popupClass,
+      appendTo: 'component',
+      align: 'right'
+    }"
+    (itemClick)="HandelOpenEdit($event)"
+  >
+  </kendo-dropdownbutton>
+</div>

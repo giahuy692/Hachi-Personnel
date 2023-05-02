@@ -1,0 +1,106 @@
+::ng-deep {
+  app-header {
+    .Wrapper-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50px;
+      background-color: #fff;
+      box-shadow: 2px 0px 5px #edeff3;
+
+      .buttongroup {
+        background-color: transparent;
+
+        button {
+          position: relative;
+          font-weight: 700;
+          color: #bbbbbb;
+          background-color: transparent;
+          outline: none;
+          border-top: none;
+          border-left: none;
+          border-bottom: none;
+          border-right: 2px solid #c4c4c4 !important;
+          font-size: 13px;
+
+          &:focus {
+            box-shadow: none;
+          }
+
+          &::after {
+            content: "";
+            height: 30px;
+            width: 3px;
+            border-radius: 3px;
+            opacity: 1;
+            position: absolute;
+            left: 100%;
+            background-color: #c4c4c4;
+          }
+        }
+
+        .k-selected {
+          position: relative;
+          color: #008000;
+          background-color: transparent;
+          outline: none;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            display: block;
+            width: 80%;
+            height: 4px;
+            border-radius: 10px;
+            background-color: #008000;
+            opacity: 1;
+            margin: 0 auto;
+            outline: none;
+          }
+        }
+      }
+
+      .action {
+        display: flex;
+        column-gap: 29px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        color: #5a6276;
+        padding-right: 30px;
+        .icon_search {
+          font-weight: 500;
+        }
+        .icon_bell {
+        }
+      }
+
+      .navbar-nav {
+        align-items: center;
+      }
+
+      .navbar-nav a {
+        display: flex;
+        align-items: center;
+      }
+
+      .bell {
+        position: relative;
+      }
+
+      .noticeBell {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        bottom: 0px;
+        right: -12px;
+        background-color: #f1802e;
+        font-size: 12px;
+        color: #fff;
+        border-radius: 15px;
+        text-align: center;
+      }
+    }
+  }
+}
