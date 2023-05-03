@@ -73,3 +73,10 @@ export class Item {
   text: string;
   value: number;
 }
+
+export class IButton {
+  text: string;
+  icon: string;
+  color: string;
+  selected?: boolean;
+}

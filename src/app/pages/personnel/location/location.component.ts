@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ListLocationTree, LocationDTO } from '../../../share/DTO/mock-data';
 import { DrawerComponent } from '@progress/kendo-angular-layout';
 
@@ -11,8 +10,6 @@ import { DrawerComponent } from '@progress/kendo-angular-layout';
 export class LocationComponent implements OnInit {
   @ViewChild('drawerRight') public DrawerRightComponent: DrawerComponent;
   expandedRight: boolean = false;
-  textSearch: string = '';
-  faSearch = faSearch;
 
   items = ['Đang áp dụng'];
 
@@ -25,15 +22,6 @@ export class LocationComponent implements OnInit {
   ngOnInit(): void {
     this.ListLocationTreeView = ListLocationTree.ObjectReturn;
     this.ListLocationTree = ListLocationTree;
-  }
-
-  handleReset() {}
-
-  handleSearch() {}
-
-  onKeyUp(event: any) {
-    if (event.target.value === '') {
-    }
   }
 
   public rootData: LocationDTO[] = ListLocationTree.ObjectReturn;

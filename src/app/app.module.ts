@@ -26,6 +26,8 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { DrawerRightComponent } from './components/drawer-right/drawer-right.component';
+import { OrgStructureComponent } from './pages/personnel/org-structure/org-structure.component';
+import { HeaderQueryDataComponent } from './components/header-query-data/header-query-data.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { DrawerRightComponent } from './components/drawer-right/drawer-right.com
     DropDownButtonComponent,
     GridLayoutBlockComponent,
     DrawerRightComponent,
+    OrgStructureComponent,
+    HeaderQueryDataComponent,
   ],
   imports: [
     BrowserModule,

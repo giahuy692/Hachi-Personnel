@@ -1,0 +1,61 @@
+<div class="wrapper-selected-data">
+  <div class="selected--data_left">
+    <div class="FilterTheData">
+      <div class="filterTitle">
+        <img src="assets/images/filter.svg" alt="icon filter" />
+
+        <h2>LỌC DỮ LIỆU</h2>
+      </div>
+      <button (click)="handleReset()">Reset bộ lọc</button>
+    </div>
+    <div class="searchWrapper">
+      <span>Tìm kiếm sản phẩm</span>
+      <div class="inputSearch">
+        <div class="searchLeft">
+          <img src="assets/images/search_black.svg" alt="" />
+          <input
+            placeholder="Tìm theo barcode, tên sản phẩm, người bán, thương hiệu"
+            [(ngModel)]="textSearch"
+            (change)="handleSearch()"
+            (keyup.enter)="handleSearch()"
+            (keyup)="onKeyUp($event)"
+          />
+        </div>
+        <button>
+          <img src="assets/images/search-btn.svg" alt="" />
+
+          Tìm
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="selected--data_right">
+    <!-- <kendo-buttongroup width="100%" selection="single">
+      <button
+        *ngFor="let button of buttons"
+        kendoButton
+        [toggleable]="true"
+        [selected]="button.selected"
+      >
+        <span>
+          <img src="{{ button.imageUrl }}" alt="" />
+          {{ button.text }}
+        </span>
+      </button>
+    </kendo-buttongroup> -->
+    <button
+      kendoButton
+      [themeColor]="'primary'"
+      imageUrl="assets/images/uflow.svg"
+    >
+      THÊM ĐIỂM LÀM VIỆC
+    </button>
+    <button
+      kendoButton
+      [themeColor]="'primary'"
+      imageUrl="assets/images/uflow.svg"
+    >
+      THÊM ĐIỂM LÀM VIỆC CON
+    </button>
+  </div>
+</div>

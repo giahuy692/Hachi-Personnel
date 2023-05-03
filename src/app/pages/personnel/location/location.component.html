@@ -73,7 +73,12 @@
             </kendo-label>
 
             <kendo-label class="k-form mt-10 d-block" text="Mô tả">
-              <textarea kendoTextArea [style.width.%]="100" [autoSize]="true">
+              <textarea
+                kendoTextArea
+                [style.width.%]="100"
+                [style.minHeight.px]="86"
+                [autoSize]="true"
+              >
               </textarea>
             </kendo-label>
 
@@ -96,54 +101,7 @@
 
     <kendo-drawer-content style="width: 100%">
       <div class="wrapper">
-        <div class="wrapper-selected-data">
-          <div class="selected--data_left">
-            <div class="FilterTheData">
-              <div class="filterTitle">
-                <img src="assets/images/filter.svg" alt="icon filter" />
-
-                <h2>LỌC DỮ LIỆU</h2>
-              </div>
-              <button (click)="handleReset()">Reset bộ lọc</button>
-            </div>
-            <div class="searchWrapper">
-              <span>Tìm kiếm sản phẩm</span>
-              <div class="inputSearch">
-                <div class="searchLeft">
-                  <img src="assets/images/search_black.svg" alt="" />
-                  <input
-                    placeholder="Tìm theo barcode, tên sản phẩm, người bán, thương hiệu"
-                    [(ngModel)]="textSearch"
-                    (change)="handleSearch()"
-                    (keyup.enter)="handleSearch()"
-                    (keyup)="onKeyUp($event)"
-                  />
-                </div>
-                <button>
-                  <img src="assets/images/search-btn.svg" alt="" />
-
-                  Tìm
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="selected--data_right">
-            <button
-              kendoButton
-              [themeColor]="'primary'"
-              imageUrl="assets/images/uflow.svg"
-            >
-              THÊM ĐIỂM LÀM VIỆC
-            </button>
-            <button
-              kendoButton
-              [themeColor]="'primary'"
-              imageUrl="assets/images/uflow.svg"
-            >
-              THÊM ĐIỂM LÀM VIỆC CON
-            </button>
-          </div>
-        </div>
+        <app-header-query-data></app-header-query-data>
 
         <kendo-treelist
           [data]="rootData"
