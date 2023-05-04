@@ -1,3 +1,4 @@
+// DTOLocation \\
 export class LocationDTO {
   ParentCode: any;
   ProvinceCode: any;
@@ -505,3 +506,1117 @@ export const ListLocationTree = {
     },
   ],
 };
+
+// DTOOrg-structure \\
+
+export class DTOStructure {
+  id: number = 0;
+  name: string = '';
+  code: string = '';
+  leaderUnit?: boolean = false;
+  Abbreviation?: string = '';
+  phone?: number = 0;
+  task?: string = '';
+  location?: string = '';
+  SubsidiaryUnit?: string = '';
+  fax?: string = '';
+  statusCode?: number = 0;
+  type: 'unit' | 'position';
+  contents?: DTOStructure[];
+}
+
+let counter = 0;
+const autoId = () => counter++;
+
+export const structure: DTOStructure[] = [
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: autoId(),
+    name: 'Hội đồng quản trị',
+    code: 'BoM',
+    type: 'unit',
+    contents: [
+      {
+        id: autoId(),
+        name: 'Chủ tịch hội đồng quản trị',
+        code: 'CD01',
+        type: 'position',
+      },
+      {
+        id: autoId(),
+        name: 'Ban giám đốc',
+        code: 'BoD',
+        type: 'unit',
+        contents: [
+          {
+            id: autoId(),
+            name: 'Giám đốc',
+            code: 'CD02',
+            leaderUnit: true,
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc kinh doanh',
+            code: 'CD03',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Phó giám đốc nội chính',
+            code: 'CD04',
+            type: 'position',
+          },
+          {
+            id: autoId(),
+            name: 'Khối văn phòng',
+            code: 'HO',
+            type: 'unit',
+            contents: [
+              { id: autoId(), name: 'Phòng thu mua', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng LGT', code: 'PM', type: 'unit' },
+              {
+                id: autoId(),
+                name: 'Phòng Marketing',
+                code: 'PM',
+                type: 'unit',
+              },
+              { id: autoId(), name: 'Phòng Nhân sự', code: 'PM', type: 'unit' },
+              { id: autoId(), name: 'Phòng Kế toán', code: 'PM', type: 'unit' },
+            ],
+          },
+          {
+            id: autoId(),
+            name: 'Khối cửa hàng',
+            code: 'OP',
+            type: 'unit',
+            contents: [
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 1',
+                code: 'OP01',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 2',
+                code: 'OP02',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 3',
+                code: 'OP03',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 4',
+                code: 'OP04',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 5',
+                code: 'OP05',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 6',
+                code: 'OP06',
+                type: 'unit',
+              },
+              {
+                id: autoId(),
+                name: 'Cửa hàng Hachi Hachi 7',
+                code: 'OP07',
+                type: 'unit',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];

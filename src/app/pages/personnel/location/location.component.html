@@ -92,8 +92,14 @@
             </kendo-label>
           </div>
           <div class="footer-drawer-right d-flex col-gap">
-            <button kendoButton>ĐÓNG</button>
-            <button kendoButton [themeColor]="'primary'">CẬP NHẬT</button>
+            <button (click)="drawerRight.toggle()" kendoButton>ĐÓNG</button>
+            <button
+              (click)="drawerRight.toggle()"
+              kendoButton
+              [themeColor]="'primary'"
+            >
+              CẬP NHẬT
+            </button>
           </div>
         </div>
       </ng-template>
@@ -122,7 +128,7 @@
           [data]="rootData"
           [fetchChildren]="fetchChildren"
           [hasChildren]="hasChildren"
-          [height]="662"
+          [height]="516.391"
           kendoTreeListExpandable
         >
           <kendo-treelist-column [expandable]="true" class="d-flex">
@@ -138,9 +144,21 @@
           </kendo-treelist-column>
           <kendo-treelist-column [width]="50">
             <ng-template kendoTreeListCellTemplate let-dataItem>
-              <app-drop-down-button
-                [DrawerRightRef]="DrawerRightComponent"
-              ></app-drop-down-button>
+              <div class="Location-tool tool">
+                <kendo-dropdownbutton
+                  class="DropDownButton"
+                  imageUrl="assets/images/ellipse.svg"
+                  [data]="OptionTool"
+                  [popupSettings]="{
+                    animate: animate,
+                    popupClass: popupClass,
+                    appendTo: 'component',
+                    align: 'right'
+                  }"
+                  (itemClick)="HandelOpenEdit($event)"
+                >
+                </kendo-dropdownbutton>
+              </div>
             </ng-template>
           </kendo-treelist-column>
         </kendo-treelist>

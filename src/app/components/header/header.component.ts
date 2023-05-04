@@ -21,7 +21,13 @@ export class HeaderComponent implements OnInit {
   ];
 
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    for (let i = 0; i < this.NavItems.length; i++) {
+      if (this.NavItems[i].selected == true) {
+        this.selectedNav.emit(this.NavItems[i].text);
+      }
+    }
+  }
 
   selected(v: string) {
     this.selectedNav.emit(v);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   DrawerItem,
   DrawerSelectEvent,
@@ -10,7 +10,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-test';
 
   // Variable Sidebar
@@ -82,6 +82,8 @@ export class AppComponent {
   ];
 
   // End: Variable Header \\
+
+  ngOnInit(): void {}
 
   //start: Header
   getValueNav(v: string) {
@@ -166,6 +168,7 @@ export class AppComponent {
               text: 'Cơ cấu tổ chức',
               icon: '',
               parentId: 3,
+              path: 'pessonnel/organizational',
             },
             {
               text: 'Điểm làm việc',

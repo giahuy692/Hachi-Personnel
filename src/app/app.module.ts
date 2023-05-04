@@ -28,6 +28,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { DrawerRightComponent } from './components/drawer-right/drawer-right.component';
 import { OrgStructureComponent } from './pages/personnel/org-structure/org-structure.component';
 import { HeaderQueryDataComponent } from './components/header-query-data/header-query-data.component';
+import { PopupModule } from '@progress/kendo-angular-popup';
+
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { HeaderQueryDataComponent } from './components/header-query-data/header-
     NotificationModule,
     DialogsModule,
     LabelModule,
+    PopupModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

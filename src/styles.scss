@@ -24,7 +24,7 @@ body {
 // Selected data \\
 .wrapper-selected-data {
   display: flex;
-  column-gap: 10px;
+  column-gap: 100px;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #bdc2d2;
@@ -131,11 +131,13 @@ body {
   }
 
   .selected--data_right {
-    width: 50%;
     display: flex;
     column-gap: 16px;
     margin-right: 27px;
-    justify-content: flex-end;
+    overflow-x: auto;
+    .k-button {
+      font-size: 11px;
+    }
   }
 }
 
@@ -380,147 +382,6 @@ kendo-numerictextbox {
   z-index: 100000000000;
 }
 
-// Location tree \\
-// kendo-panelbar {
-//   kendo-panelbar-item {
-//     @mixin k-link {
-//       flex-direction: row-reverse !important;
-//       .Location-tool {
-//         margin-left: auto;
-//       }
-
-//       .Location--title {
-//         display: flex;
-//         align-items: center;
-//         font-weight: 400;
-//         column-gap: 130px;
-//         margin-left: 10px;
-//         .Location--title_left {
-//           display: flex;
-//           align-items: center;
-//           column-gap: 19px;
-//           font-weight: 700;
-//         }
-//         .Location--right {
-//         }
-//       }
-//       .k-panelbar-toggle {
-//         margin: 0 !important;
-//       }
-//     }
-
-//     .k-link {
-//       @include k-link;
-//     }
-
-//     .ng-trigger {
-//       .k-panel {
-//         .k-panelbar-item {
-//           .k-link {
-//             @include k-link;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// kendo-treeview \\
-// kendo-treeview {
-//   .k-treeview-group {
-//     .k-treeview-item {
-//       margin: 5px 0;
-//       background-color: #fff;
-//       .k-treeview-group {
-//         .k-treeview-item {
-//           margin: 5px 0;
-//           background-color: #fff;
-//           .k-treeview-mid {
-//             .k-treeview-toggle {
-//             }
-
-//             .k-treeview-leaf {
-//               width: 100%;
-//               .k-image {
-//                 margin: 0;
-//               }
-//               .k-icon {
-//                 margin: 0;
-//               }
-//               .k-treeview-leaf-text {
-//                 width: 100%;
-//                 .Location-tool {
-//                   margin-left: auto;
-//                 }
-
-//                 .Location--title {
-//                   display: flex;
-//                   align-items: center;
-//                   font-weight: 400;
-//                   column-gap: 130px;
-//                   margin-left: 10px;
-//                   .Location--title_left {
-//                     display: flex;
-//                     align-items: center;
-//                     column-gap: 19px;
-//                     font-weight: 700;
-
-//                     img {
-//                       margin: 0;
-//                     }
-//                   }
-//                   .Location--right {
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//       .k-treeview-mid {
-//         .k-treeview-toggle {
-//         }
-
-//         .k-treeview-leaf {
-//           width: 100%;
-//           .k-image {
-//             margin: 0;
-//           }
-//           .k-icon {
-//             margin: 0;
-//           }
-//           .k-treeview-leaf-text {
-//             width: 100%;
-//             .Location-tool {
-//               margin-left: auto;
-//             }
-
-//             .Location--title {
-//               display: flex;
-//               align-items: center;
-//               font-weight: 400;
-//               column-gap: 130px;
-//               margin-left: 10px;
-//               .Location--title_left {
-//                 display: flex;
-//                 align-items: center;
-//                 column-gap: 19px;
-//                 font-weight: 700;
-
-//                 img {
-//                   margin: 0;
-//                 }
-//               }
-//               .Location--right {
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 kendo-treelist {
   .k-grid-aria-root {
     background-color: #edeff3;
@@ -539,7 +400,35 @@ kendo-treelist {
               align-items: stretch;
               background-color: #fff !important;
               td {
+                height: 58px;
                 border-color: transparent;
+
+                &:last-child {
+                  border-left: 1px solid #bdc2d2;
+                }
+
+                span.k-icon {
+                  &::before {
+                    display: none;
+                  }
+                }
+                .k-i-expand {
+                  background-image: url(../src/assets/images/chevron-top.svg);
+                  background-repeat: no-repeat;
+                  background-size: inherit;
+                  background-position: center;
+                  width: 16px;
+                  height: 16px;
+                }
+
+                .k-i-collapse {
+                  background-image: url(../src/assets/images/chevron-down_dark.svg);
+                  background-repeat: no-repeat;
+                  background-size: inherit;
+                  background-position: center;
+                  width: 16px;
+                  height: 16px;
+                }
                 .Location--title {
                   display: flex;
                   align-items: center;
@@ -560,13 +449,24 @@ kendo-treelist {
                   }
                 }
                 .Location-tool {
+                  .DropDownButton {
+                    kendo-popup {
+                      .k-popup {
+                        border: none;
+                        border-radius: 3px 0px 3px 3px;
+                        position: relative;
+                        top: -28px;
+                        left: -28px;
+                      }
+                    }
+                  }
                   width: fit-content;
                   .k-focus {
                     background-color: #bdc2d2;
                     border-radius: 0px 3px 3px 0px;
                   }
                   .k-icon-button {
-                    height: 16px;
+                    height: auto;
                     border: none;
                     outline: none;
                     background-color: transparent;
@@ -644,6 +544,7 @@ kendo-treelist {
 
         .k-menu-item {
           .k-menu-link {
+            color: #fff;
           }
         }
       }
@@ -653,6 +554,7 @@ kendo-treelist {
         box-shadow: none;
         background-color: #959db3;
         box-shadow: none;
+        color: #fff;
       }
     }
   }
