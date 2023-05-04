@@ -101,14 +101,28 @@
 
     <kendo-drawer-content style="width: 100%">
       <div class="wrapper">
-        <app-header-query-data></app-header-query-data>
+        <app-header-query-data>
+          <button class="btn-left_header-query">Xóa bộ lọc</button>
+          <button
+            class="content-data-right"
+            *ngFor="let button of buttonsForHeaderQueryData"
+            kendoButton
+            [toggleable]="true"
+            [selected]="button.selected"
+            imageUrl="{{ button.imageUrl }}"
+            [style.width.px]="button.width"
+            [style.height.px]="button.height"
+            [themeColor]="button.color"
+          >
+            {{ button.text }}
+          </button>
+        </app-header-query-data>
 
         <kendo-treelist
           [data]="rootData"
           [fetchChildren]="fetchChildren"
           [hasChildren]="hasChildren"
-          [height]="476"
-          scrollable="virtual"
+          [height]="662"
           kendoTreeListExpandable
         >
           <kendo-treelist-column [expandable]="true" class="d-flex">

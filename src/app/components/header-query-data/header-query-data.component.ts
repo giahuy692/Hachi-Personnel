@@ -12,22 +12,6 @@ export class HeaderQueryDataComponent implements OnInit {
   textSearch: string = '';
   faSearch = faSearch;
 
-  @Input() buttons = [
-    {
-      text: 'THÊM ĐIỂM LÀM VIỆC',
-      icon: 'k-i-clock',
-      color: '#f0c505',
-      imageUrl: 'assets/images/uflow.svg',
-    },
-    {
-      text: 'THÊM ĐIỂM LÀM VIỆC CON',
-      icon: 'k-i-check-circle',
-      color: '#10b507',
-      selected: true,
-      imageUrl: 'assets/images/uflow.svg',
-    },
-  ];
-
   constructor() {}
 
   ngOnInit(): void {}

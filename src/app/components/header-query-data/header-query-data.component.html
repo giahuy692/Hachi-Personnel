@@ -6,7 +6,8 @@
 
         <h2>LỌC DỮ LIỆU</h2>
       </div>
-      <button (click)="handleReset()">Reset bộ lọc</button>
+      <ng-content select=".btn-left_header-query"></ng-content>
+      <!-- <button (click)="handleReset()">Reset bộ lọc</button> -->
     </div>
     <div class="searchWrapper">
       <span>Tìm kiếm sản phẩm</span>
@@ -30,32 +31,6 @@
     </div>
   </div>
   <div class="selected--data_right">
-    <!-- <kendo-buttongroup width="100%" selection="single">
-      <button
-        *ngFor="let button of buttons"
-        kendoButton
-        [toggleable]="true"
-        [selected]="button.selected"
-      >
-        <span>
-          <img src="{{ button.imageUrl }}" alt="" />
-          {{ button.text }}
-        </span>
-      </button>
-    </kendo-buttongroup> -->
-    <button
-      kendoButton
-      [themeColor]="'primary'"
-      imageUrl="assets/images/uflow.svg"
-    >
-      THÊM ĐIỂM LÀM VIỆC
-    </button>
-    <button
-      kendoButton
-      [themeColor]="'primary'"
-      imageUrl="assets/images/uflow.svg"
-    >
-      THÊM ĐIỂM LÀM VIỆC CON
-    </button>
+    <ng-content select=".content-data-right"></ng-content>
   </div>
 </div>
