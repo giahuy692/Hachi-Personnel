@@ -7,7 +7,6 @@ import {
 import { ListLocationTree, LocationDTO } from '../../../share/DTO/mock-data';
 import { DrawerComponent } from '@progress/kendo-angular-layout';
 import { ListItemModel } from '@progress/kendo-angular-buttons';
-import { Align } from '@progress/kendo-angular-popup';
 
 @Component({
   selector: 'app-location',
@@ -20,7 +19,7 @@ export class LocationComponent implements AfterViewInit {
 
   items = ['Đang áp dụng'];
 
-  // Variable treeview \\
+  // Variable TreeList \\
   ListLocationTree: any;
   ListLocationTreeView: any;
   public rootData: LocationDTO[] = ListLocationTree.ObjectReturn;

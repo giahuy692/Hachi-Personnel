@@ -23,9 +23,11 @@ export class OrgStructureComponent implements AfterViewInit {
   expandedRight: boolean = false;
   items = ['Đang áp dụng'];
   titleDrawer: string = '';
+  DepartmentItem: DTOStructure;
+  StatusToggleDrawer: string = '';
 
   // Variable TreeList \\
-  public rootData: DTOStructure[] = structure;
+  public rootData: any = structure.ObjectReturn;
   buttonsForHeaderQueryData = [
     {
       text: 'THÊM MỚI ĐƠN VỊ',
@@ -74,11 +76,13 @@ export class OrgStructureComponent implements AfterViewInit {
 
   // Treeview \\
   public fetchChildren = (item: DTOStructure): DTOStructure[] => {
-    return item.contents;
+    console.log(item);
+    return item.ListDepartment;
   };
 
   public hasChildren = (item: DTOStructure): boolean => {
-    return item.contents && item.contents.length > 0;
+    console.log(item);
+    return item.ListDepartment && item.ListDepartment.length > 0;
   };
 
   // DropListTool \\
@@ -90,15 +94,25 @@ export class OrgStructureComponent implements AfterViewInit {
     } else if (event.text === 'Thêm mới đơn vị') {
       // Xử lý sự kiện khi click vào item "Thêm mới đơn vị"
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị';
       this.DrawerRightComponent.toggle();
     } else if (event.text === 'Thêm mới đơn vị con') {
       // Xử lý sự kiện khi click vào item "Thêm mới đơn vị con"
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị con';
       this.DrawerRightComponent.toggle();
     } else if (event.text === 'Thêm mới chức danh') {
       // Xử lý sự kiện khi click vào item "Thêm mới chức danh"
       this.titleDrawer = 'THÔNG TIN CHỨC DANH';
+      this.StatusToggleDrawer = 'Thêm mới chức danh';
       this.DrawerRightComponent.toggle();
     }
   }
+
+  // MultiSelect \\
+  listItemsMultiSelect: Array<{ text: string; value: number }> = [
+    { text: 'Giám đốc', value: 1 },
+    { text: 'abc xyz', value: 2 },
+  ];
+  public value: any = [{ text: 'Giám đốc', value: 2 }];
 }

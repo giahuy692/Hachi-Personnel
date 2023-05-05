@@ -5,6 +5,8 @@ import {
   PanelBarItemModel,
 } from '@progress/kendo-angular-layout';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -83,7 +85,21 @@ export class AppComponent implements OnInit {
 
   // End: Variable Header \\
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const element = $('.DropDownButton .k-animation-container');
+
+    element.on('scroll', function () {
+      const atBottom =
+        $(this).scrollTop() + $(this).height() === $(this).prop('scrollHeight');
+      if (atBottom) {
+        console.log(
+          $(this).scrollTop() + $(this).height() ===
+            $(this).prop('scrollHeight')
+        );
+        console.log('Scrolled to bottom!');
+      }
+    });
+  }
 
   //start: Header
   getValueNav(v: string) {
@@ -212,6 +228,7 @@ export class AppComponent implements OnInit {
   }
   // Drawer left ->
 
+  // PanelBar \\
   items1: Array<PanelBarItemModel> = [
     <PanelBarItemModel>{
       title: 'Second item',

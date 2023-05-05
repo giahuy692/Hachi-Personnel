@@ -19,60 +19,159 @@
           </div>
           <hr />
           <div class="content-drawer-right">
-            <kendo-label class="k-form" text="Tên điểm làm việc" [for]="input">
+            <kendo-label
+              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              class="k-form"
+              text="Tên đơn vị"
+              [for]="input"
+            >
+              <input #input [style.width.%]="100" kendoTextBox />
+            </kendo-label>
+
+            <kendo-label
+              *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
+              class="k-form"
+              text="Tên đơn vị"
+              [for]="input"
+            >
               <input #input [style.width.%]="100" kendoTextBox />
             </kendo-label>
 
             <div class="d-flex_between col-gap mt-10">
-              <kendo-label class="k-form" text="Mã điểm làm việc" [for]="input">
+              <kendo-label
+                *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+                class="k-form"
+                text="Mã đơn vị"
+                [for]="input"
+              >
                 <input #input [style.width.%]="100" kendoTextBox />
               </kendo-label>
-              <kendo-label class="k-form" text="Tên viết tắt" [for]="input">
+              <kendo-label
+                *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+                class="k-form"
+                text="Tên viết tắt"
+                [for]="input"
+              >
                 <input #input [style.width.%]="100" kendoTextBox />
               </kendo-label>
+              <kendo-label
+                *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
+                class="k-form"
+                text="Mã chức danh"
+                [for]="input"
+              >
+                <input #input [style.width.%]="100" kendoTextBox />
+              </kendo-label>
+              <div
+                class="d-flex"
+                *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
+              >
+                <input
+                  type="checkbox"
+                  #notification
+                  kendoCheckBox
+                  style="margin: 0"
+                />
+                <kendo-label
+                  class="k-checkbox-label"
+                  [for]="notification"
+                  text="Là trưởng đơn vị"
+                >
+                </kendo-label>
+              </div>
             </div>
 
-            <kendo-label class="k-form mt-10 d-block" text="Trực thuộc">
+            <kendo-label class="k-form mt-10 d-block" text="Đơn vị trực thuộc">
               <kendo-dropdownlist
-                defaultItem="Văn phòng"
+                defaultItem="Ban giám đốc"
                 [style.width.px]="200"
                 fillMode="flat"
               ></kendo-dropdownlist>
             </kendo-label>
 
             <kendo-label
+              *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
               class="k-form mt-10 d-block"
-              text="Địa chỉ liên hệ"
+              text="Đơn vị trực thuộc"
+            >
+              <kendo-dropdownlist
+                [style.width.px]="200"
+                fillMode="flat"
+              ></kendo-dropdownlist>
+            </kendo-label>
+
+            <kendo-label
+              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              class="k-form mt-10 d-block"
+              text="Điện thoại"
               [for]="input"
+              [style.width.px]="228"
             >
               <input #input [style.width.%]="100" kendoTextBox />
             </kendo-label>
 
-            <kendo-label class="k-form mt-10 d-block" text="Tỉnh thành">
+            <kendo-label
+              class="k-form mt-10 d-block"
+              text="Phân nhóm"
+              *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
+            >
               <kendo-dropdownlist
-                defaultItem="Tp. Hồ Chí Minh"
-                [style.width.px]="200"
+                defaultItem="Quản lý cấp cao"
+                [style.width.px]="145"
                 fillMode="flat"
               ></kendo-dropdownlist>
             </kendo-label>
 
-            <kendo-label class="k-form mt-10 d-block" text="Quận huyện">
-              <kendo-dropdownlist
-                defaultItem="Quận Gò Vấp"
-                [style.width.px]="200"
-                fillMode="flat"
-              ></kendo-dropdownlist>
+            <kendo-label
+              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              class="k-form mt-10 d-block"
+              text="Fax"
+              [for]="input"
+              [style.width.px]="228"
+            >
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                value="+84 8 2345 2341"
+              />
             </kendo-label>
 
-            <kendo-label class="k-form mt-10 d-block" text="Phường/xã">
-              <kendo-dropdownlist
-                defaultItem="Phường 5"
-                [style.width.px]="200"
-                fillMode="flat"
-              ></kendo-dropdownlist>
-            </kendo-label>
+            <div
+              class="d-block"
+              *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
+            >
+              <div class="d-flex mt-10 col-gap">
+                <kendo-label
+                  class="k-form d-block"
+                  text="Vai trò sử dụng tài nguyên hệ thống"
+                >
+                </kendo-label>
+                <button
+                  kendoButton
+                  imageUrl="assets/images/plus-green.svg"
+                  class="btn-icon"
+                  [style.width.px]="13"
+                  [style.height.px]="13"
+                ></button>
+              </div>
+              <kendo-multiselect
+                [data]="listItemsMultiSelect"
+                [(ngModel)]="value"
+                textField="text"
+                valueField="value"
+              >
+                <ng-template kendoMultiSelectTagTemplate let-dataItem>
+                  {{ dataItem.text }}
+                </ng-template>
+              </kendo-multiselect>
+            </div>
 
-            <kendo-label class="k-form mt-10 d-block" text="Mô tả">
+            <kendo-label
+              *ngIf="StatusToggleDrawer == 'Chức năng, nhiệm vụ'"
+              class="k-form mt-10 d-block"
+              text="Mô tả"
+            >
               <textarea
                 kendoTextArea
                 [style.width.%]="100"
@@ -141,9 +240,11 @@
                         src="assets/images/Location.svg"
                         alt="icon_location"
                       />
-                      <span>{{ dataItem.name }}</span>
+                      <span>{{ dataItem.Department }}</span>
                     </div>
-                    <span class="Location--right">{{ dataItem.code }}</span>
+                    <span class="Location--right">{{
+                      dataItem.DepartmentID
+                    }}</span>
                   </div>
                 </kendo-gridlayout-item>
                 <kendo-gridlayout-item

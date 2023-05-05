@@ -278,6 +278,12 @@ body {
   display: block;
 }
 
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
 // Start: dialog
 .wrapper-dialog {
   .k-dialog {
@@ -575,6 +581,13 @@ kendo-treelist {
 
     button {
       border-radius: 5px !important;
+    }
+  }
+}
+
+kendo-multiselect {
+  .kendo-taglist {
+    .k-chip {
     }
   }
 }
