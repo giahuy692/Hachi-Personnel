@@ -156,14 +156,13 @@
                 ></button>
               </div>
               <kendo-multiselect
+                class="mt-10"
                 [data]="listItemsMultiSelect"
                 [(ngModel)]="value"
                 textField="text"
                 valueField="value"
+                [popupSettings]="{ appendTo: 'component' }"
               >
-                <ng-template kendoMultiSelectTagTemplate let-dataItem>
-                  {{ dataItem.text }}
-                </ng-template>
               </kendo-multiselect>
             </div>
 
@@ -218,6 +217,7 @@
             [style.width.px]="button.width"
             [style.height.px]="button.height"
             [themeColor]="button.color"
+            (click)="BtnOpenEdit(button.text)"
           >
             {{ button.text }}
           </button>

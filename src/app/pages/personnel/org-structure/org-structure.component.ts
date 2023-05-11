@@ -74,6 +74,26 @@ export class OrgStructureComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
+  // app-header-query-data \\
+  BtnOpenEdit(v: any) {
+    if (v === 'THÊM MỚI ĐƠN VỊ') {
+      // Xử lý sự kiện khi click vào item "Chỉnh sửa"
+      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị';
+      this.DrawerRightComponent.toggle();
+    } else if (v === 'THÊM MỚI ĐƠN VỊ CON') {
+      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị"
+      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị con';
+      this.DrawerRightComponent.toggle();
+    } else if (v === 'THÊM MỚI CHỨC DANH') {
+      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị con"
+      this.titleDrawer = 'THÔNG TIN CHỨC DANH';
+      this.StatusToggleDrawer = 'Thêm mới chức danh';
+      this.DrawerRightComponent.toggle();
+    }
+  }
+
   // Treeview \\
   public fetchChildren = (item: DTOStructure): DTOStructure[] => {
     console.log(item);
