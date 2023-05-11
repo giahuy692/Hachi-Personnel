@@ -1,6 +1,6 @@
 <link
   rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
 <div class="Drawer-right">
@@ -137,41 +137,7 @@
               />
             </kendo-label>
 
-            <div
-              class="d-block"
-              *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
-            >
-              <div class="d-flex mt-10 col-gap">
-                <kendo-label
-                  class="k-form d-block"
-                  text="Vai trò sử dụng tài nguyên hệ thống"
-                >
-                </kendo-label>
-                <button
-                  kendoButton
-                  imageUrl="assets/images/plus-green.svg"
-                  class="btn-icon"
-                  [style.width.px]="13"
-                  [style.height.px]="13"
-                ></button>
-              </div>
-              <kendo-multiselect
-                [data]="listItemsMultiSelect"
-                [(ngModel)]="value"
-                textField="text"
-                valueField="value"
-              >
-                <ng-template kendoMultiSelectTagTemplate let-dataItem>
-                  {{ dataItem.text }}
-                </ng-template>
-              </kendo-multiselect>
-            </div>
-
-            <kendo-label
-              *ngIf="StatusToggleDrawer == 'Chức năng, nhiệm vụ'"
-              class="k-form mt-10 d-block"
-              text="Mô tả"
-            >
+            <kendo-label class="k-form mt-10 d-block" text="Mô tả">
               <textarea
                 kendoTextArea
                 [style.width.%]="100"
@@ -218,7 +184,6 @@
             [style.width.px]="button.width"
             [style.height.px]="button.height"
             [themeColor]="button.color"
-            (click)="Openedpopup(button.text)"
           >
             {{ button.text }}
           </button>
@@ -239,22 +204,14 @@
             <ng-template kendoTreeListCellTemplate let-dataItem>
               <kendo-gridlayout [cols]="['auto', 'auto']" [gap]="{ cols: 142 }">
                 <kendo-gridlayout-item>
-                  <div
-                    (click)="getValueSelectedTreeList(dataItem)"
-                    style="width: 100%; height: 100%; display: flex"
-                  >
-                    <div class="Location--title">
-                      <div class="Location--title_left">
-                        <img
-                          src="assets/images/Location.svg"
-                          alt="icon_location"
-                        />
-                        <span>{{ dataItem.Department }}</span>
-                      </div>
-                      <span class="Location--right">{{
-                        dataItem.DepartmentID
-                      }}</span>
+                  <div class="Location--title">
+                    <div class="Location--title_left">
+                      <i class="fa-solid fa-location-dot"></i>
+                      <span>{{ dataItem.Department }}</span>
                     </div>
+                    <span class="Location--right">{{
+                      dataItem.DepartmentID
+                    }}</span>
                   </div>
                 </kendo-gridlayout-item>
                 <kendo-gridlayout-item
@@ -272,7 +229,7 @@
               <div class="Location-tool tool">
                 <kendo-dropdownbutton
                   class="DropDownButton"
-                  imageUrl="assets/images/ellipse.svg"
+                  iconClass="fa-solid fa-ellipsis"
                   [data]="OptionTool"
                   [popupSettings]="{
                     animate: animate,
@@ -280,7 +237,7 @@
                     appendTo: 'component',
                     align: 'right'
                   }"
-                  (itemClick)="HandelOpenEdit($event)"
+                  (itemClick)="Openedpopup($event)"
                 >
                 </kendo-dropdownbutton>
               </div>

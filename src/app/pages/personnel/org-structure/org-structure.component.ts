@@ -30,6 +30,7 @@ export class OrgStructureComponent implements AfterViewInit {
     { value: 3, text: 'Ngừng hoạt động' },
   ];
   titleDrawer: string = '';
+
   StatusToggleDrawer: string = '';
   selectedItemStatus: Item = this.itemsStatus[0];
 
@@ -63,6 +64,7 @@ export class OrgStructureComponent implements AfterViewInit {
   // Variable TreeList \\
   public rootData: DtoOrgStructureTree[] = ListOrgStructureTree.ObjectReturn;
   TreeListDto = new DtoOrgStructureTree();
+
   buttonsForHeaderQueryData = [
     {
       text: 'THÊM MỚI ĐƠN VỊ',
@@ -116,7 +118,28 @@ export class OrgStructureComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
+  // app-header-query-data \\
+  BtnOpenEdit(v: any) {
+    if (v === 'THÊM MỚI ĐƠN VỊ') {
+      // Xử lý sự kiện khi click vào item "Chỉnh sửa"
+      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị';
+      this.DrawerRightComponent.toggle();
+    } else if (v === 'THÊM MỚI ĐƠN VỊ CON') {
+      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị"
+      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
+      this.StatusToggleDrawer = 'Thêm mới đơn vị con';
+      this.DrawerRightComponent.toggle();
+    } else if (v === 'THÊM MỚI CHỨC DANH') {
+      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị con"
+      this.titleDrawer = 'THÔNG TIN CHỨC DANH';
+      this.StatusToggleDrawer = 'Thêm mới chức danh';
+      this.DrawerRightComponent.toggle();
+    }
+  }
+
   // Treeview \\
+
   public fetchChildren = (item: DtoOrgStructureTree): DtoOrgStructureTree[] => {
     return item.ListDepartment;
   };
@@ -140,30 +163,6 @@ export class OrgStructureComponent implements AfterViewInit {
     this.TreeListDto = v;
   }
 
-  // DropListTool \\
-  HandelOpenEdit(event: any) {
-    if (event.text === 'Chỉnh sửa') {
-      // Xử lý sự kiện khi click vào item "Chỉnh sửa"
-      this.titleDrawer = 'THÔNG TIN CHỈNH SỬA';
-      this.DrawerRightComponent.toggle();
-    } else if (event.text === 'Thêm mới đơn vị') {
-      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị"
-      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
-      this.StatusToggleDrawer = 'Thêm mới đơn vị';
-      this.DrawerRightComponent.toggle();
-    } else if (event.text === 'Thêm mới đơn vị con') {
-      // Xử lý sự kiện khi click vào item "Thêm mới đơn vị con"
-      this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
-      this.StatusToggleDrawer = 'Thêm mới đơn vị con';
-      this.DrawerRightComponent.toggle();
-    } else if (event.text === 'Thêm mới chức danh') {
-      // Xử lý sự kiện khi click vào item "Thêm mới chức danh"
-      this.titleDrawer = 'THÔNG TIN CHỨC DANH';
-      this.StatusToggleDrawer = 'Thêm mới chức danh';
-      this.DrawerRightComponent.toggle();
-    }
-  }
-
   Openedpopup(event: any) {
     if (event === 'THÊM MỚI ĐƠN VỊ') {
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
@@ -179,6 +178,7 @@ export class OrgStructureComponent implements AfterViewInit {
       this.titleDrawer = 'THÔNG TIN CHỨC DANH';
       this.StatusToggleDrawer = 'Thêm mới chức danh';
       this.selectedItemStatus = this.itemsStatus[this.TreeListDto.StatusID];
+
       this.DrawerRightComponent.toggle();
     }
   }

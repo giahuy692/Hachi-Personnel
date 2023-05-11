@@ -30,8 +30,8 @@ body {
   border-bottom: 1px solid #bdc2d2;
   overflow-x: auto;
   .selected--data_left {
-    display: flex;
     width: 50%;
+    display: flex;
     align-items: center;
     padding: 5px 0;
     column-gap: 24px;
@@ -132,6 +132,7 @@ body {
   }
 
   .selected--data_right {
+    margin-right: 16px;
     display: flex;
     column-gap: 16px;
     margin-right: 27px;
