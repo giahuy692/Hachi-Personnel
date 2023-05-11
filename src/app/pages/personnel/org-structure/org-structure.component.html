@@ -25,7 +25,12 @@
               text="Tên đơn vị"
               [for]="input"
             >
-              <input #input [style.width.%]="100" kendoTextBox />
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                [(value)]="DtoDepartment.Department"
+              />
             </kendo-label>
 
             <kendo-label
@@ -34,7 +39,12 @@
               text="Tên đơn vị"
               [for]="input"
             >
-              <input #input [style.width.%]="100" kendoTextBox />
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                [(value)]="DtoPosition.Position"
+              />
             </kendo-label>
 
             <div class="d-flex_between col-gap mt-10">
@@ -44,15 +54,26 @@
                 text="Mã đơn vị"
                 [for]="input"
               >
-                <input #input [style.width.%]="100" kendoTextBox />
+                <input
+                  #input
+                  [style.width.%]="100"
+                  kendoTextBox
+                  [(value)]="DtoDepartment.DepartmentID"
+                />
               </kendo-label>
+
               <kendo-label
                 *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
                 class="k-form"
                 text="Tên viết tắt"
                 [for]="input"
               >
-                <input #input [style.width.%]="100" kendoTextBox />
+                <input
+                  #input
+                  [style.width.%]="100"
+                  kendoTextBox
+                  [(value)]="DtoDepartment.Brieft"
+                />
               </kendo-label>
               <kendo-label
                 *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
@@ -60,7 +81,12 @@
                 text="Mã chức danh"
                 [for]="input"
               >
-                <input #input [style.width.%]="100" kendoTextBox />
+                <input
+                  #input
+                  [style.width.%]="100"
+                  kendoTextBox
+                  [(value)]="DtoPosition.PositionID"
+                />
               </kendo-label>
               <div
                 class="d-flex"
@@ -71,6 +97,7 @@
                   #notification
                   kendoCheckBox
                   style="margin: 0"
+                  [(value)]="DtoPosition.IsLeader"
                 />
                 <kendo-label
                   class="k-checkbox-label"
@@ -107,7 +134,12 @@
               [for]="input"
               [style.width.px]="228"
             >
-              <input #input [style.width.%]="100" kendoTextBox />
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                [(value)]="DtoDepartment.Phone"
+              />
             </kendo-label>
 
             <kendo-label
@@ -134,6 +166,7 @@
                 [style.width.%]="100"
                 kendoTextBox
                 value="+84 8 2345 2341"
+                [(value)]="DtoDepartment.Phone"
               />
             </kendo-label>
 
@@ -184,6 +217,7 @@
             [style.width.px]="button.width"
             [style.height.px]="button.height"
             [themeColor]="button.color"
+            (click)="Openedpopup(button.text)"
           >
             {{ button.text }}
           </button>
@@ -202,25 +236,37 @@
         >
           <kendo-treelist-column [expandable]="true" class="d-flex">
             <ng-template kendoTreeListCellTemplate let-dataItem>
-              <kendo-gridlayout [cols]="['auto', 'auto']" [gap]="{ cols: 142 }">
-                <kendo-gridlayout-item>
-                  <div class="Location--title">
-                    <div class="Location--title_left">
-                      <i class="fa-solid fa-location-dot"></i>
-                      <span>{{ dataItem.Department }}</span>
-                    </div>
-                    <span class="Location--right">{{
-                      dataItem.DepartmentID
-                    }}</span>
-                  </div>
-                </kendo-gridlayout-item>
-                <kendo-gridlayout-item
-                  class="box rect"
-                  *ngIf="dataItem.leaderUnit"
+              <div
+                (click)="getValueSelectedTreeList(dataItem)"
+                [style]="{
+                  display: 'flex',
+                  width: '100%',
+                  'align-items': 'center',
+                  height: '100%'
+                }"
+              >
+                <kendo-gridlayout
+                  [cols]="['auto', 'auto']"
+                  [gap]="{ cols: 142 }"
                 >
-                  <span>Trưởng đơn vị</span>
-                </kendo-gridlayout-item>
-              </kendo-gridlayout>
+                  <kendo-gridlayout-item>
+                    <div>
+                      <div class="Location--title">
+                        <div class="Location--title_left">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span>{{ dataItem.Department }}</span>
+                        </div>
+                        <span class="Location--right">{{
+                          dataItem.DepartmentID
+                        }}</span>
+                      </div>
+                    </div>
+                  </kendo-gridlayout-item>
+                  <kendo-gridlayout-item class="box rect">
+                    <span>Trưởng đơn vị</span>
+                  </kendo-gridlayout-item>
+                </kendo-gridlayout>
+              </div>
             </ng-template>
           </kendo-treelist-column>
 

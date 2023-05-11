@@ -514,36 +514,79 @@ export const ListLocationTree = {
   ],
 };
 
+// -------------------------------- \\
+
 // DtoOrg-structure \\
-export class ListLocation {
-  DepartmentName?: string;
-  LocationName?: string;
-  Code?: number;
-  DepartmentID?: number;
-  LocationID?: number;
+
+export class DepartmentDTO {
+  StatusCode: number;
+  ErrorString: string;
+  ObjectReturn: ObjectReturn[];
 }
 
-export class DtoOrgStructureTree {
+export class ObjectReturn {
   StatusName: string;
-  ParentCode?: number;
-  ListLocationCode?: number;
-  ListLocation: ListLocation[];
-  ListDepartment: DtoOrgStructureTree[];
-  TypeData: number;
-  StatusID: number;
-  OrderBy?: any;
-  ParentID: number;
-  Phone?: string;
-  Remark?: string;
-  Brieft?: null;
+  ParentCode: any;
+  ListLocationCode: any;
+  ListLocation: any[];
+  ListDepartment: ListDepartment[];
+  ListPosition: ListPosition[];
   Code: number;
-  Config?: null;
-  Department: string;
+  ParentID: number;
   DepartmentID: string;
-  Fax?: string;
+  Department: string;
+  Brieft: any;
+  Phone: any;
+  Fax: any;
+  Remark: any;
+  Config: any;
+  TypeData: number;
+  OrderBy: any;
+  StatusID: number;
 }
 
-export const ListOrgStructureTree = {
+export class ListDepartment {
+  StatusName: string;
+  ParentCode: any;
+  ListLocationCode: any;
+  ListLocation: any[];
+  ListDepartment: ListDepartment[];
+  ListPosition: ListPosition[];
+  Code: number;
+  ParentID: number;
+  DepartmentID: string;
+  Department: string;
+  Brieft: any;
+  Phone: any;
+  Fax: any;
+  Remark: any;
+  Config: any;
+  TypeData: number;
+  OrderBy: any;
+  StatusID: number;
+}
+
+export class ListPosition {
+  DepartmentCode: any;
+  ReportToCode: any;
+  GroupPositionCode: any;
+  StatusName: any;
+  ListChild: any;
+  Code: number;
+  PositionID: string;
+  Position: string;
+  IsLeader: boolean;
+  DepartmentID: number;
+  ReportTo: any;
+  GroupPosition: any;
+  Remark: any;
+  OrderBy: any;
+  ListOfRoles: any;
+  Config: any;
+  StatusID: number;
+}
+
+export const ListDataOrgStructureTree: DepartmentDTO = {
   StatusCode: 0,
   ErrorString: null,
   ObjectReturn: [
@@ -611,6 +654,7 @@ export const ListOrgStructureTree = {
                       Remark: null,
                       OrderBy: null,
                       ListOfRoles: null,
+                      ListChild: null,
                       Config: null,
                       StatusID: 0,
                     },
@@ -624,6 +668,7 @@ export const ListOrgStructureTree = {
                       Position: 'Nhân viên kinh doanh kênh MT',
                       IsLeader: false,
                       DepartmentID: 4,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -634,6 +679,7 @@ export const ListOrgStructureTree = {
                     },
                     {
                       DepartmentCode: null,
+                      ListChild: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
@@ -655,6 +701,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 26,
                       PositionID: 'WSAD',
                       Position: 'Admin phòng bán sỉ',
@@ -704,6 +751,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 6,
                       PositionID: 'CXMA',
+                      ListChild: null,
                       Position: 'Trưởng phòng CX',
                       IsLeader: true,
                       DepartmentID: 5,
@@ -722,6 +770,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 27,
                       PositionID: 'CXBS',
+                      ListChild: null,
                       Position: 'Giám sát hình ảnh cửa hàng',
                       IsLeader: false,
                       DepartmentID: 5,
@@ -740,6 +789,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 28,
                       PositionID: 'CXWA',
+                      ListChild: null,
                       Position: 'Web admin',
                       IsLeader: false,
                       DepartmentID: 5,
@@ -758,6 +808,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 29,
                       PositionID: 'CXCS',
+                      ListChild: null,
                       Position: 'Nhân viên chăm sóc khách hàng',
                       IsLeader: false,
                       DepartmentID: 5,
@@ -808,6 +859,7 @@ export const ListOrgStructureTree = {
                       Position: 'Trưởng phòng Thương mại Điện tử',
                       IsLeader: true,
                       DepartmentID: 6,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -821,6 +873,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 30,
                       PositionID: 'ECDE',
                       Position: 'Nhân viên phát triển TMĐT',
@@ -837,6 +890,7 @@ export const ListOrgStructureTree = {
                     {
                       DepartmentCode: null,
                       ReportToCode: null,
+                      ListChild: null,
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 31,
@@ -857,6 +911,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 32,
                       PositionID: 'ECCO',
                       Position: 'Nhân viên tư vấn Online',
@@ -877,6 +932,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 33,
                       PositionID: 'ECCL',
+                      ListChild: null,
                       Position: 'Trưởng nhóm tư vấn Online',
                       IsLeader: false,
                       DepartmentID: 6,
@@ -926,6 +982,7 @@ export const ListOrgStructureTree = {
                       PositionID: 'HIMA',
                       Position: 'Trưởng phòng hành chánh nhân sự',
                       IsLeader: true,
+                      ListChild: null,
                       DepartmentID: 7,
                       ReportTo: null,
                       GroupPosition: null,
@@ -945,6 +1002,7 @@ export const ListOrgStructureTree = {
                       Position: 'Chuyên viên Hành chính nhân sự',
                       IsLeader: false,
                       DepartmentID: 7,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -960,6 +1018,7 @@ export const ListOrgStructureTree = {
                       StatusName: null,
                       Code: 35,
                       PositionID: 'HILD',
+                      ListChild: null,
                       Position: 'Chuyên viên L&D-Truyền thông nội bộ',
                       IsLeader: false,
                       DepartmentID: 7,
@@ -976,6 +1035,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 36,
                       PositionID: 'HIBP',
                       Position: 'Chuyên viên Đối tác Nhân sự Khối vận hành',
@@ -995,6 +1055,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 37,
+                      ListChild: null,
                       PositionID: 'HIIS',
                       Position: 'Chuyên viên IT',
                       IsLeader: false,
@@ -1042,6 +1103,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 9,
+                      ListChild: null,
                       PositionID: 'ACCA',
                       Position: 'Kế toán trưởng',
                       IsLeader: true,
@@ -1058,6 +1120,7 @@ export const ListOrgStructureTree = {
                       DepartmentCode: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
+                      ListChild: null,
                       StatusName: null,
                       Code: 38,
                       PositionID: 'ACGA',
@@ -1078,6 +1141,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 39,
+                      ListChild: null,
                       PositionID: 'ACSA',
                       Position: 'Kế toán cửa hàng',
                       IsLeader: false,
@@ -1092,6 +1156,7 @@ export const ListOrgStructureTree = {
                     },
                     {
                       DepartmentCode: null,
+                      ListChild: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
@@ -1142,6 +1207,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 12,
                       PositionID: 'MKMA',
                       Position: 'Trưởng phòng Marketing',
@@ -1158,6 +1224,7 @@ export const ListOrgStructureTree = {
                     {
                       DepartmentCode: null,
                       ReportToCode: null,
+                      ListChild: null,
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 54,
@@ -1178,6 +1245,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 55,
                       PositionID: 'MKVL',
                       Position: 'Trưởng nhóm Sáng tạo Hình ảnh',
@@ -1195,6 +1263,7 @@ export const ListOrgStructureTree = {
                       DepartmentCode: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
+                      ListChild: null,
                       StatusName: null,
                       Code: 56,
                       PositionID: 'MKTE',
@@ -1213,6 +1282,7 @@ export const ListOrgStructureTree = {
                       DepartmentCode: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
+                      ListChild: null,
                       StatusName: null,
                       Code: 57,
                       PositionID: 'MKVP',
@@ -1232,6 +1302,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 58,
                       PositionID: 'MKCP',
                       Position: 'Nhân viên Content Marketing',
@@ -1250,6 +1321,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 59,
                       PositionID: 'MKDI',
                       Position: 'Nhân viên Digital Marketing',
@@ -1268,6 +1340,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 60,
                       PositionID: 'MKVD',
                       Position: 'Nhân viên Thiết kế',
@@ -1287,6 +1360,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 61,
+                      ListChild: null,
                       PositionID: 'MKAD',
                       Position: 'Nhân viên Marketing Admin',
                       IsLeader: false,
@@ -1305,6 +1379,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 62,
+                      ListChild: null,
                       PositionID: 'MKVC',
                       Position: 'Nhân viên Visual Content Marketing',
                       IsLeader: false,
@@ -1352,6 +1427,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 13,
+                      ListChild: null,
                       PositionID: 'MDMA',
                       Position: 'Trưởng phòng Merchandising',
                       IsLeader: true,
@@ -1376,6 +1452,7 @@ export const ListOrgStructureTree = {
                       DepartmentID: 10,
                       ReportTo: null,
                       GroupPosition: null,
+                      ListChild: null,
                       Remark: null,
                       OrderBy: null,
                       ListOfRoles: null,
@@ -1393,6 +1470,7 @@ export const ListOrgStructureTree = {
                       IsLeader: false,
                       DepartmentID: 10,
                       ReportTo: null,
+                      ListChild: null,
                       GroupPosition: null,
                       Remark: null,
                       OrderBy: null,
@@ -1406,6 +1484,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 65,
+                      ListChild: null,
                       PositionID: 'MDME',
                       Position: 'Chuyên viên Merchandising',
                       IsLeader: false,
@@ -1423,6 +1502,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 66,
                       PositionID: 'MDPI',
                       Position: 'Chuyên viên Thông tin sản phẩm',
@@ -1446,6 +1526,7 @@ export const ListOrgStructureTree = {
                       Position: 'Admin Thu mua',
                       IsLeader: false,
                       DepartmentID: 10,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -1464,6 +1545,7 @@ export const ListOrgStructureTree = {
                       Position: 'Nhân viên Merchandising kiêm Admin',
                       IsLeader: false,
                       DepartmentID: 10,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -1485,6 +1567,7 @@ export const ListOrgStructureTree = {
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
+                      ListChild: null,
                       OrderBy: null,
                       ListOfRoles: null,
                       Config: null,
@@ -1501,6 +1584,7 @@ export const ListOrgStructureTree = {
                       IsLeader: false,
                       DepartmentID: 10,
                       ReportTo: null,
+                      ListChild: null,
                       GroupPosition: null,
                       Remark: null,
                       OrderBy: null,
@@ -1514,6 +1598,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 71,
+                      ListChild: null,
                       PositionID: 'MDBD',
                       Position: 'Nhân viên Digital Marketing',
                       IsLeader: false,
@@ -1532,6 +1617,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 72,
+                      ListChild: null,
                       PositionID: 'MDBC',
                       Position: 'Nhân viên content Marketing',
                       IsLeader: false,
@@ -1634,6 +1720,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 14,
                       PositionID: 'OPSF',
                       Position: 'Giám sát cửa hàng- ngành thực phẩm',
@@ -1657,6 +1744,7 @@ export const ListOrgStructureTree = {
                       Position: 'Giám sát cửa hàng- ngành gia dụng',
                       IsLeader: false,
                       DepartmentID: 12,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -1680,6 +1768,7 @@ export const ListOrgStructureTree = {
                       Remark: null,
                       OrderBy: null,
                       ListOfRoles: null,
+                      ListChild: null,
                       Config: null,
                       StatusID: 0,
                     },
@@ -1693,6 +1782,7 @@ export const ListOrgStructureTree = {
                       Position: 'Nhân viên tư vấn thực phẩm',
                       IsLeader: false,
                       DepartmentID: 12,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -1713,6 +1803,7 @@ export const ListOrgStructureTree = {
                       DepartmentID: 12,
                       ReportTo: null,
                       GroupPosition: null,
+                      ListChild: null,
                       Remark: null,
                       OrderBy: null,
                       ListOfRoles: null,
@@ -1733,6 +1824,7 @@ export const ListOrgStructureTree = {
                       GroupPosition: null,
                       Remark: null,
                       OrderBy: null,
+                      ListChild: null,
                       ListOfRoles: null,
                       Config: null,
                       StatusID: 0,
@@ -1752,6 +1844,7 @@ export const ListOrgStructureTree = {
                       Remark: null,
                       OrderBy: null,
                       ListOfRoles: null,
+                      ListChild: null,
                       Config: null,
                       StatusID: 0,
                     },
@@ -1772,6 +1865,7 @@ export const ListOrgStructureTree = {
                       ListOfRoles: null,
                       Config: null,
                       StatusID: 0,
+                      ListChild: null,
                     },
                     {
                       DepartmentCode: null,
@@ -1789,6 +1883,7 @@ export const ListOrgStructureTree = {
                       OrderBy: null,
                       ListOfRoles: null,
                       Config: null,
+                      ListChild: null,
                       StatusID: 0,
                     },
                     {
@@ -1804,6 +1899,7 @@ export const ListOrgStructureTree = {
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
+                      ListChild: null,
                       OrderBy: null,
                       ListOfRoles: null,
                       Config: null,
@@ -1822,6 +1918,7 @@ export const ListOrgStructureTree = {
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
+                      ListChild: null,
                       OrderBy: null,
                       ListOfRoles: null,
                       Config: null,
@@ -1837,6 +1934,7 @@ export const ListOrgStructureTree = {
                       Position: 'Cửa hàng trưởng',
                       IsLeader: true,
                       DepartmentID: 12,
+                      ListChild: null,
                       ReportTo: null,
                       GroupPosition: null,
                       Remark: null,
@@ -1915,6 +2013,7 @@ export const ListOrgStructureTree = {
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 11,
+                      ListChild: null,
                       PositionID: 'LGMA',
                       Position: 'Trưởng phòng Logistics',
                       IsLeader: true,
@@ -1932,6 +2031,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 41,
                       PositionID: 'LGDM',
                       Position: 'Phó phòng Logistics',
@@ -1950,6 +2050,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 42,
                       PositionID: 'LGDL',
                       Position: 'Thủ kho',
@@ -1968,6 +2069,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 43,
                       PositionID: 'LGDD',
                       Position: 'Phó thủ kho',
@@ -1986,6 +2088,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 44,
                       PositionID: 'LGFL',
                       Position: 'Phó thủ kho - nhóm thực phẩm',
@@ -2004,6 +2107,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 45,
                       PositionID: 'LGOL',
                       Position: 'Thủ kho Online',
@@ -2021,6 +2125,7 @@ export const ListOrgStructureTree = {
                       DepartmentCode: null,
                       ReportToCode: null,
                       GroupPositionCode: null,
+                      ListChild: null,
                       StatusName: null,
                       Code: 46,
                       PositionID: 'LGOA',
@@ -2040,6 +2145,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 47,
                       PositionID: 'LGOP',
                       Position: 'Nhân viên soạn hàng Online',
@@ -2058,6 +2164,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 48,
                       PositionID: 'LGOS',
                       Position: 'Nhân viên quét đối soát Online',
@@ -2076,6 +2183,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 49,
                       PositionID: 'LGOW',
                       Position: 'Nhân viên đóng và giao hàng',
@@ -2094,6 +2202,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 50,
                       PositionID: 'LGOC',
                       Position: 'Nhân viên xử lý đơn hàng sàn TMĐT',
@@ -2110,6 +2219,7 @@ export const ListOrgStructureTree = {
                     {
                       DepartmentCode: null,
                       ReportToCode: null,
+                      ListChild: null,
                       GroupPositionCode: null,
                       StatusName: null,
                       Code: 51,
@@ -2130,6 +2240,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 52,
                       PositionID: 'LGWC',
                       Position: 'Nhân viên điều phối bán sỉ',
@@ -2148,6 +2259,7 @@ export const ListOrgStructureTree = {
                       ReportToCode: null,
                       GroupPositionCode: null,
                       StatusName: null,
+                      ListChild: null,
                       Code: 53,
                       PositionID: 'LGWE',
                       Position: 'Nhân viên kho',
@@ -2197,6 +2309,7 @@ export const ListOrgStructureTree = {
               ReportToCode: null,
               GroupPositionCode: null,
               StatusName: null,
+              ListChild: null,
               Code: 4,
               PositionID: 'BDVS',
               Position: 'Phó giám đốc phụ trách Kinh doanh',
@@ -2215,6 +2328,7 @@ export const ListOrgStructureTree = {
               ReportToCode: null,
               GroupPositionCode: null,
               StatusName: null,
+              ListChild: null,
               Code: 1,
               PositionID: 'BDGD',
               Position: 'Giám đốc',
@@ -2233,6 +2347,7 @@ export const ListOrgStructureTree = {
               ReportToCode: null,
               GroupPositionCode: null,
               StatusName: null,
+              ListChild: null,
               Code: 10,
               PositionID: 'BDVM',
               Position: 'Phó giám đốc phụ trách MD và Supply Chain',
@@ -2251,8 +2366,8 @@ export const ListOrgStructureTree = {
           ParentID: 1,
           DepartmentID: 'BD',
           Department: 'Ban giám đốc',
-          Brieft: null,
-          Phone: null,
+          Brieft: 'BGD',
+          Phone: '054612384545',
           Fax: null,
           Remark: null,
           Config: null,
@@ -2266,8 +2381,8 @@ export const ListOrgStructureTree = {
       ParentID: null,
       DepartmentID: 'BOM',
       Department: 'Hội đồng thành viên',
-      Brieft: null,
-      Phone: null,
+      Brieft: 'HDTV',
+      Phone: '054612384545',
       Fax: null,
       Remark: null,
       Config: null,

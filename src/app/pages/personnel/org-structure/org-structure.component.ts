@@ -5,14 +5,17 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  ListLocationTree,
-  DtoOrgStructureTree,
-  ListOrgStructureTree,
+  DepartmentDTO,
+  ListDepartment,
+  ObjectReturn,
+  ListDataOrgStructureTree,
+  ListPosition,
 } from '../../../share/DTO/mock-data';
 import { DrawerComponent } from '@progress/kendo-angular-layout';
 import { ListItemModel } from '@progress/kendo-angular-buttons';
 import { Item } from 'src/app/share/DTO';
 import { SelectableSettings } from '@progress/kendo-angular-treelist';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-org-structure',
@@ -62,8 +65,9 @@ export class OrgStructureComponent implements AfterViewInit {
   selectedWards = this.wards[0];
 
   // Variable TreeList \\
-  public rootData: DtoOrgStructureTree[] = ListOrgStructureTree.ObjectReturn;
-  TreeListDto = new DtoOrgStructureTree();
+  public rootData: ObjectReturn[];
+  DtoDepartment = new ListDepartment();
+  DtoPosition = new ListPosition();
 
   buttonsForHeaderQueryData = [
     {
@@ -111,7 +115,7 @@ export class OrgStructureComponent implements AfterViewInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    console.log(this.rootData);
+    this.rootData = ListDataOrgStructureTree.ObjectReturn;
   }
 
   ngAfterViewInit() {
@@ -140,11 +144,11 @@ export class OrgStructureComponent implements AfterViewInit {
 
   // Treeview \\
 
-  public fetchChildren = (item: DtoOrgStructureTree): DtoOrgStructureTree[] => {
+  public fetchChildren = (item: ListDepartment): ListDepartment[] => {
     return item.ListDepartment;
   };
 
-  public hasChildren = (item: DtoOrgStructureTree): boolean => {
+  public hasChildren = (item: ListDepartment): boolean => {
     return item.ListDepartment && item.ListDepartment.length > 0;
   };
 
@@ -158,26 +162,25 @@ export class OrgStructureComponent implements AfterViewInit {
 
   selectedTreeList: any[] = [];
 
-  getValueSelectedTreeList(v: DtoOrgStructureTree): void {
+  getValueSelectedTreeList(v: ObjectReturn): void {
     console.log(v);
-    this.TreeListDto = v;
   }
 
   Openedpopup(event: any) {
     if (event === 'THÊM MỚI ĐƠN VỊ') {
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
       this.StatusToggleDrawer = 'Thêm mới đơn vị';
-      this.selectedItemStatus = this.itemsStatus[this.TreeListDto.StatusID];
+      this.selectedItemStatus = this.itemsStatus[this.DtoDepartment.StatusID];
       this.DrawerRightComponent.toggle();
     } else if (event === 'THÊM MỚI ĐƠN VỊ CON') {
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
       this.StatusToggleDrawer = 'Thêm mới đơn vị con';
-      this.selectedItemStatus = this.itemsStatus[this.TreeListDto.StatusID];
+      this.selectedItemStatus = this.itemsStatus[this.DtoDepartment.StatusID];
       this.DrawerRightComponent.toggle();
     } else if (event === 'THÊM MỚI CHỨC DANH') {
       this.titleDrawer = 'THÔNG TIN CHỨC DANH';
       this.StatusToggleDrawer = 'Thêm mới chức danh';
-      this.selectedItemStatus = this.itemsStatus[this.TreeListDto.StatusID];
+      this.selectedItemStatus = this.itemsStatus[this.DtoPosition.StatusID];
 
       this.DrawerRightComponent.toggle();
     }
