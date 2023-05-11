@@ -1,6 +1,10 @@
 <link
   rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
 />
 
 <div class="Drawer-right">
@@ -20,15 +24,30 @@
           <hr />
           <div class="content-drawer-right">
             <kendo-label class="k-form" text="Tên điểm làm việc" [for]="input">
-              <input #input [style.width.%]="100" kendoTextBox />
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                [(value)]="TreeListDto.LocationName"
+              />
             </kendo-label>
 
             <div class="d-flex_between col-gap mt-10">
               <kendo-label class="k-form" text="Mã điểm làm việc" [for]="input">
-                <input #input [style.width.%]="100" kendoTextBox />
+                <input
+                  #input
+                  [style.width.%]="100"
+                  kendoTextBox
+                  [(value)]="TreeListDto.LocationID"
+                />
               </kendo-label>
               <kendo-label class="k-form" text="Tên viết tắt" [for]="input">
-                <input #input [style.width.%]="100" kendoTextBox />
+                <input
+                  #input
+                  [style.width.%]="100"
+                  kendoTextBox
+                  [(value)]="TreeListDto.Brieft"
+                />
               </kendo-label>
             </div>
 
@@ -45,30 +64,44 @@
               text="Địa chỉ liên hệ"
               [for]="input"
             >
-              <input #input [style.width.%]="100" kendoTextBox />
+              <input
+                #input
+                [style.width.%]="100"
+                kendoTextBox
+                [(value)]="TreeListDto.Address"
+              />
             </kendo-label>
 
             <kendo-label class="k-form mt-10 d-block" text="Tỉnh thành">
               <kendo-dropdownlist
-                defaultItem="Tp. Hồ Chí Minh"
                 [style.width.px]="200"
                 fillMode="flat"
+                [data]="provinces"
+                [(ngModel)]="selectedProvinces"
+                textField="text"
+                valueField="id"
               ></kendo-dropdownlist>
             </kendo-label>
 
-            <kendo-label class="k-form mt-10 d-block" text="Quận huyện">
+            <kendo-label class="k-form mt-10 d-block" text="Quận/huyện">
               <kendo-dropdownlist
-                defaultItem="Quận Gò Vấp"
                 [style.width.px]="200"
                 fillMode="flat"
+                [data]="districts"
+                [(ngModel)]="selectedDistricts"
+                textField="text"
+                valueField="id"
               ></kendo-dropdownlist>
             </kendo-label>
 
             <kendo-label class="k-form mt-10 d-block" text="Phường/xã">
               <kendo-dropdownlist
-                defaultItem="Phường 5"
                 [style.width.px]="200"
                 fillMode="flat"
+                [data]="wards"
+                [(ngModel)]="selectedWards"
+                textField="text"
+                valueField="id"
               ></kendo-dropdownlist>
             </kendo-label>
 
@@ -84,10 +117,12 @@
 
             <kendo-label class="k-form mt-10 d-block" text="Tình trạng">
               <kendo-dropdownlist
-                defaultItem="Đang áp dụng"
+                [(ngModel)]="selectedItemStatus"
                 [style.width.px]="200"
                 fillMode="flat"
-                [data]="items"
+                [data]="itemsStatus"
+                textField="text"
+                valueField="value"
               ></kendo-dropdownlist>
             </kendo-label>
           </div>
@@ -119,26 +154,38 @@
             [style.width.px]="button.width"
             [style.height.px]="button.height"
             [themeColor]="button.color"
+            (click)="Openedpopup(button.text)"
           >
             {{ button.text }}
           </button>
         </app-header-query-data>
 
         <kendo-treelist
-          [data]="rootData"
+          [kendoTreeListFlatBinding]="rootData"
           [fetchChildren]="fetchChildren"
           [hasChildren]="hasChildren"
           [height]="516.391"
+          idField="Code"
+          parentIdField="ParentID"
+          [selectable]="settingsTreeList"
+          kendoTreeListSelectable
           kendoTreeListExpandable
+          [initiallyExpanded]="true"
+          [(selectedItems)]="selectedTreeList"
         >
           <kendo-treelist-column [expandable]="true" class="d-flex">
             <ng-template kendoTreeListCellTemplate let-dataItem>
-              <div class="Location--title">
-                <div class="Location--title_left">
-                  <img src="assets/images/Location.svg" alt="icon_location" />
-                  <span>{{ dataItem.LocationName }}</span>
+              <div
+                (click)="getValueSelectedTreeList(dataItem)"
+                style="width: 100%; height: 100%; display: flex"
+              >
+                <div class="Location--title">
+                  <div class="Location--title_left">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>{{ dataItem.LocationName }}</span>
+                  </div>
+                  <span class="Location--right">{{ dataItem.LocationID }}</span>
                 </div>
-                <span class="Location--right">{{ dataItem.LocationID }}</span>
               </div>
             </ng-template>
           </kendo-treelist-column>
@@ -147,7 +194,7 @@
               <div class="Location-tool tool">
                 <kendo-dropdownbutton
                   class="DropDownButton"
-                  imageUrl="assets/images/ellipse.svg"
+                  iconClass="fa-solid fa-ellipsis"
                   [data]="OptionTool"
                   [popupSettings]="{
                     animate: animate,
@@ -155,7 +202,7 @@
                     appendTo: 'component',
                     align: 'right'
                   }"
-                  (itemClick)="HandelOpenEdit($event)"
+                  (itemClick)="HandelOpenEdit($event, dataItem)"
                 >
                 </kendo-dropdownbutton>
               </div>

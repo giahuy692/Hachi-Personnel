@@ -28,6 +28,7 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #bdc2d2;
+  overflow-x: auto;
   .selected--data_left {
     display: flex;
     width: 50%;
@@ -134,7 +135,7 @@ body {
     display: flex;
     column-gap: 16px;
     margin-right: 27px;
-    overflow-x: auto;
+    justify-content: flex-end;
     .k-button {
       font-size: 11px;
     }
@@ -278,6 +279,12 @@ body {
   display: block;
 }
 
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
 // Start: dialog
 .wrapper-dialog {
   .k-dialog {
@@ -396,9 +403,24 @@ kendo-treelist {
             display: none;
           }
           tbody {
+            .k-state-selected {
+              background-color: rgba(26, 102, 52, 0.8) !important;
+              color: #fff !important;
+              ~ .k-i-collapse,
+              .k-i-collapse,
+              ~ .k-i-expand,
+              .k-i-expand {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(0%)
+                  hue-rotate(0deg) brightness(100%) contrast(100%);
+              }
+              .tool {
+                button {
+                  color: #fff;
+                }
+              }
+            }
             tr {
               align-items: stretch;
-              background-color: #fff !important;
               td {
                 height: 58px;
                 border-color: transparent;
@@ -412,6 +434,13 @@ kendo-treelist {
                     display: none;
                   }
                 }
+
+                .k-grid tbody > tr:not(.k-detail-row):hover,
+                .k-grid tbody > tr:not(.k-detail-row).k-hover {
+                  background-color: hsl(120, 100%, 33%) !important;
+                  color: #fff !important;
+                }
+
                 .k-i-expand {
                   background-image: url(../src/assets/images/chevron-top.svg);
                   background-repeat: no-repeat;
@@ -560,6 +589,25 @@ kendo-treelist {
   }
 }
 
+.k-grid tbody > tr:not(.k-detail-row):hover,
+.k-grid tbody > tr:not(.k-detail-row).k-hover {
+  background-color: rgba(26, 102, 52, 0.4) !important;
+  color: #fff !important;
+
+  ~ .k-i-collapse,
+  .k-i-collapse,
+  ~ .k-i-expand,
+  .k-i-expand {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) hue-rotate(0deg)
+      brightness(100%) contrast(100%) !important;
+  }
+  .tool {
+    button {
+      color: #fff !important;
+    }
+  }
+}
+
 // buttongroup
 .Wrapper-header {
   kendo-buttongroup {
@@ -576,5 +624,73 @@ kendo-treelist {
     button {
       border-radius: 5px !important;
     }
+  }
+}
+
+kendo-multiselect {
+  margin-top: 3px;
+  outline: 2px solid #dbdee7;
+  border: none;
+  background-color: #fff;
+  height: 35px;
+  .k-selection-multiple {
+    .k-searchbar {
+      .k-input-inner {
+        border: none;
+      }
+    }
+    .k-chip {
+      display: flex;
+      flex-direction: row-reverse;
+      background-image: none;
+      background-color: transparent;
+      border: none;
+
+      .k-chip-actions {
+        .k-chip-remove-action {
+          .k-icon {
+            background-image: url(../src/assets/images/closed-gray.svg);
+            background-repeat: no-repeat;
+            background-size: inherit;
+            background-position: center;
+            color: #959db3;
+            border-radius: 50%;
+            font-size: 17px;
+            width: 13px;
+            height: 13px;
+          }
+
+          .k-i-x-circle {
+            &::before {
+              content: "" !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .k-clear-value {
+    pointer-events: none;
+    .k-icon {
+      background-image: url(../src/assets/images/chevron-down_dark.svg);
+      background-repeat: no-repeat;
+      background-size: inherit;
+      background-position: center;
+      color: #959db3;
+      border-radius: 50%;
+      font-size: 17px;
+      width: 13px;
+      height: 13px;
+    }
+    .k-i-x {
+      &:before {
+        content: "";
+      }
+    }
+  }
+  .k-chip-label {
+    font-weight: 400;
+    font-size: 13px;
+    color: #26282e;
   }
 }

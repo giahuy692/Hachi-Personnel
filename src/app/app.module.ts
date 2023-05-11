@@ -30,7 +30,6 @@ import { OrgStructureComponent } from './pages/personnel/org-structure/org-struc
 import { HeaderQueryDataComponent } from './components/header-query-data/header-query-data.component';
 import { PopupModule } from '@progress/kendo-angular-popup';
 
-
 @NgModule({
   declarations: [
     AppComponent,
