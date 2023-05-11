@@ -5,6 +5,8 @@ import {
   PanelBarItemModel,
 } from '@progress/kendo-angular-layout';
 
+import { ServiceAPIService } from './services/service-api.service';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -85,6 +87,8 @@ export class AppComponent implements OnInit {
 
   // End: Variable Header \\
 
+  constructor(private serviceAPIService: ServiceAPIService) {}
+
   ngOnInit(): void {
     const element = $('.DropDownButton .k-animation-container');
 
@@ -99,6 +103,8 @@ export class AppComponent implements OnInit {
         console.log('Scrolled to bottom!');
       }
     });
+
+    this.serviceAPIService.getToken('hachihachi', '123456789');
   }
 
   //start: Header

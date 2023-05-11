@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 // DTO
 import { ProductApi, ProductList } from 'src/app/share/DTO';
@@ -19,11 +20,26 @@ export class ServiceAPIService {
   SearchShare = new Subject<any>();
   tempStatus = new Subject<number>();
   private apiUrl = 'http://test.lapson.vn/api/product/';
+  private localERP = 'http://172.16.10.86:75/erp/';
 
   constructor(private http: HttpClient) {}
   ngOnInit() {}
 
   ngAfterViewInit() {}
+
+  // Hàm lấy token từ API
+  getToken(username: string, password: string): Observable<any> {
+    const url = 'http://172.16.10.86:5001/connect/token';
+    const data = `username=${username}&password=${password}&grant_type=password&scope=adminapi offline_access&client_id=admin&client_secret=adminsecret`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    });
+
+    return this.http
+      .post(url, data, { headers })
+      .pipe(map((response) => response));
+  }
 
   // GET ProductList
   getDataApi() {
