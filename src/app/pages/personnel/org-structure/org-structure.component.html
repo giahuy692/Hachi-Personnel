@@ -176,6 +176,7 @@
                 [style.width.%]="100"
                 [style.minHeight.px]="86"
                 [autoSize]="true"
+                [(value)]="DtoDepartment.Remark"
               >
               </textarea>
             </kendo-label>
@@ -237,7 +238,9 @@
           <kendo-treelist-column [expandable]="true" class="d-flex">
             <ng-template kendoTreeListCellTemplate let-dataItem>
               <div
-                (click)="getValueSelectedTreeList(dataItem)"
+                (click)="
+                  getValueSelectedTreeList(dataItem, dataItem.ListPosition)
+                "
                 [style]="{
                   display: 'flex',
                   width: '100%',
@@ -251,19 +254,33 @@
                 >
                   <kendo-gridlayout-item>
                     <div>
-                      <div class="Location--title">
-                        <div class="Location--title_left">
-                          <i class="fa-solid fa-location-dot"></i>
-                          <span>{{ dataItem.Department }}</span>
+                      <div class="treelist--title">
+                        <div class="treelist--title_left">
+                          <div
+                            *ngIf="dataItem.Department"
+                            class="img-uflow"
+                          ></div>
+                          <div *ngIf="dataItem.Position" class="img-user"></div>
+                          <span class="title-content">{{
+                            dataItem.Department || dataItem.Position
+                          }}</span>
                         </div>
-                        <span class="Location--right">{{
-                          dataItem.DepartmentID
-                        }}</span>
+                        <span
+                          class="treelist--right"
+                          *ngIf="
+                            checkTypeOfValue(dataItem.DepartmentID, 'string')
+                          "
+                        >
+                          {{ dataItem.DepartmentID }}
+                        </span>
+                        <span class="treelist--right" #position>
+                          {{ dataItem.PositionID }}
+                        </span>
                       </div>
                     </div>
                   </kendo-gridlayout-item>
                   <kendo-gridlayout-item class="box rect">
-                    <span>Trưởng đơn vị</span>
+                    <span *ngIf="dataItem.IsLeader">Trưởng đơn vị</span>
                   </kendo-gridlayout-item>
                 </kendo-gridlayout>
               </div>
@@ -272,7 +289,7 @@
 
           <kendo-treelist-column [width]="50">
             <ng-template kendoTreeListCellTemplate let-dataItem>
-              <div class="Location-tool tool">
+              <div class="treelist-tool tool">
                 <kendo-dropdownbutton
                   class="DropDownButton"
                   iconClass="fa-solid fa-ellipsis"

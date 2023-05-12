@@ -7,15 +7,15 @@ import {
 import {
   DepartmentDTO,
   ListDepartment,
-  ObjectReturn,
   ListDataOrgStructureTree,
   ListPosition,
 } from '../../../share/DTO/mock-data';
+import { ServiceAPIService } from 'src/app/services/service-api.service';
 import { DrawerComponent } from '@progress/kendo-angular-layout';
 import { ListItemModel } from '@progress/kendo-angular-buttons';
 import { Item } from 'src/app/share/DTO';
 import { SelectableSettings } from '@progress/kendo-angular-treelist';
-import { Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 
 @Component({
   selector: 'app-org-structure',
@@ -65,7 +65,7 @@ export class OrgStructureComponent implements AfterViewInit {
   selectedWards = this.wards[0];
 
   // Variable TreeList \\
-  public rootData: ObjectReturn[];
+  public rootData: ListDepartment[];
   DtoDepartment = new ListDepartment();
   DtoPosition = new ListPosition();
 
@@ -112,7 +112,10 @@ export class OrgStructureComponent implements AfterViewInit {
   ];
   public value: any = [{ text: 'Giám đốc', value: 2 }];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private serviceApi: ServiceAPIService
+  ) {}
 
   ngOnInit(): void {
     this.rootData = ListDataOrgStructureTree.ObjectReturn;
@@ -144,13 +147,32 @@ export class OrgStructureComponent implements AfterViewInit {
 
   // Treeview \\
 
-  public fetchChildren = (item: ListDepartment): ListDepartment[] => {
-    return item.ListDepartment;
+  public fetchChildren = (dataitem: any): Observable<any[]> =>
+    of(this.getListChildrenTreelist(dataitem));
+
+  public hasChildren = (item: any): boolean => {
+    if (item.hasOwnProperty('ListPosition')) {
+      return (
+        item.ListPosition.length > 0 || item.ListDepartment.length !== null
+      );
+    } else {
+      return false;
+    }
   };
 
-  public hasChildren = (item: ListDepartment): boolean => {
-    return item.ListDepartment && item.ListDepartment.length > 0;
-  };
+  getListChildrenTreelist(dataItem: any) {
+    let arr: any = [];
+
+    if (dataItem.ListPosition) {
+      arr = arr.concat(dataItem.ListPosition);
+    }
+
+    if (dataItem.ListDepartment) {
+      arr = arr.concat(dataItem.ListDepartment);
+    }
+
+    return arr;
+  }
 
   public settingsTreeList: SelectableSettings = {
     enabled: true,
@@ -162,8 +184,19 @@ export class OrgStructureComponent implements AfterViewInit {
 
   selectedTreeList: any[] = [];
 
-  getValueSelectedTreeList(v: ObjectReturn): void {
-    console.log(v);
+  getValueSelectedTreeList(DtoDepartment: any, DtoPosition: any): void {
+    this.DtoDepartment = DtoDepartment;
+    this.DtoPosition = DtoPosition;
+    console.log('DtoDepartment: ', this.DtoDepartment);
+    console.log('DtoPosition: ', this.DtoPosition);
+  }
+
+  checkTypeOfValue(value: any, typeCheck: any) {
+    if (typeCheck === 'string') {
+      return typeof value === 'string';
+    } else if (typeCheck == 'number') {
+      return typeof value === 'number';
+    }
   }
 
   Openedpopup(event: any) {

@@ -244,4 +244,13 @@ export class ServiceAPIService {
         );
     });
   }
+
+  checkTypeOfValue(value: any, typeCheck: any) {
+    console.log(value + typeCheck);
+    if (typeCheck === 'string') {
+      return typeof value === 'string';
+    } else if (typeCheck == 'number') {
+      return typeof value === 'number';
+    }
+  }
 }
