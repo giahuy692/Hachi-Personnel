@@ -3,6 +3,9 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   ViewChild,
+  TemplateRef,
+  ElementRef,
+  ViewContainerRef,
 } from '@angular/core';
 import {
   DepartmentDTO,
@@ -16,6 +19,8 @@ import { ListItemModel } from '@progress/kendo-angular-buttons';
 import { Item } from 'src/app/share/DTO';
 import { SelectableSettings } from '@progress/kendo-angular-treelist';
 import { Observable, Subject, of } from 'rxjs';
+import { Align, PopupRef, PopupService } from '@progress/kendo-angular-popup';
+import { PopupToolComponent } from 'src/app/components/popup-tool/popup-tool.component';
 
 @Component({
   selector: 'app-org-structure',
@@ -112,9 +117,15 @@ export class OrgStructureComponent implements AfterViewInit {
   ];
   public value: any = [{ text: 'Giám đốc', value: 2 }];
 
+  // Popup \\
+  @ViewChild('containertreelist', { read: ViewContainerRef })
+  public container: ViewContainerRef;
+  private popupRef: PopupRef;
+
   constructor(
     private cdr: ChangeDetectorRef,
-    private serviceApi: ServiceAPIService
+    private serviceApi: ServiceAPIService,
+    private popupService: PopupService
   ) {}
 
   ngOnInit(): void {
@@ -123,6 +134,7 @@ export class OrgStructureComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
+    this.serviceApi.getToken();
   }
 
   // app-header-query-data \\
@@ -187,8 +199,8 @@ export class OrgStructureComponent implements AfterViewInit {
   getValueSelectedTreeList(DtoDepartment: any, DtoPosition: any): void {
     this.DtoDepartment = DtoDepartment;
     this.DtoPosition = DtoPosition;
-    console.log('DtoDepartment: ', this.DtoDepartment);
-    console.log('DtoPosition: ', this.DtoPosition);
+    // console.log('DtoDepartment: ', this.DtoDepartment);
+    // console.log('DtoPosition: ', this.DtoPosition);
   }
 
   checkTypeOfValue(value: any, typeCheck: any) {
@@ -199,23 +211,49 @@ export class OrgStructureComponent implements AfterViewInit {
     }
   }
 
-  Openedpopup(event: any) {
-    if (event === 'THÊM MỚI ĐƠN VỊ') {
+  Openedpopup(event: any, ListPosition?: any, ListDepartment?: any) {
+    if (event.text === 'Thêm mới đơn vị') {
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ';
       this.StatusToggleDrawer = 'Thêm mới đơn vị';
       this.selectedItemStatus = this.itemsStatus[this.DtoDepartment.StatusID];
       this.DrawerRightComponent.toggle();
-    } else if (event === 'THÊM MỚI ĐƠN VỊ CON') {
+    } else if (event.text === 'Thêm mới đơn vị con') {
       this.titleDrawer = 'THÔNG TIN ĐƠN VỊ CON';
       this.StatusToggleDrawer = 'Thêm mới đơn vị con';
       this.selectedItemStatus = this.itemsStatus[this.DtoDepartment.StatusID];
       this.DrawerRightComponent.toggle();
-    } else if (event === 'THÊM MỚI CHỨC DANH') {
+    } else if (event.text === 'Thêm mới chức danh') {
       this.titleDrawer = 'THÔNG TIN CHỨC DANH';
       this.StatusToggleDrawer = 'Thêm mới chức danh';
       this.selectedItemStatus = this.itemsStatus[this.DtoPosition.StatusID];
-
       this.DrawerRightComponent.toggle();
+    } else if (event.text === 'Chỉnh sửa') {
+      this.titleDrawer = 'THÔNG TIN CHỨC DANH';
+      this.StatusToggleDrawer = 'Thêm mới chức danh';
+      this.selectedItemStatus = this.itemsStatus[this.DtoPosition.StatusID];
+      this.DrawerRightComponent.toggle();
+    }
+  }
+
+  public anchorAlign: Align = { horizontal: 'left', vertical: 'bottom' };
+  public popupAlign: Align = { horizontal: 'right', vertical: 'bottom' };
+  public show = false;
+
+  public togglePopup(
+    anchor: ElementRef | HTMLElement,
+    template: TemplateRef<{ [Key: string]: unknown }>
+  ): void {
+    if (this.popupRef) {
+      this.popupRef.close();
+      this.popupRef = null;
+    } else {
+      this.popupRef = this.popupService.open({
+        anchor: anchor,
+        appendTo: this.container,
+        content: template,
+        anchorAlign: this.anchorAlign,
+        popupAlign: this.popupAlign,
+      });
     }
   }
 }

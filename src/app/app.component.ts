@@ -103,8 +103,6 @@ export class AppComponent implements OnInit {
         console.log('Scrolled to bottom!');
       }
     });
-
-    this.serviceAPIService.getToken('hachihachi', '123456789');
   }
 
   //start: Header

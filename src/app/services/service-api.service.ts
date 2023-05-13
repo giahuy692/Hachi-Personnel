@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 // DTO
@@ -28,17 +28,22 @@ export class ServiceAPIService {
   ngAfterViewInit() {}
 
   // Hàm lấy token từ API
-  getToken(username: string, password: string): Observable<any> {
-    const url = 'http://172.16.10.86:5001/connect/token';
-    const data = `username=${username}&password=${password}&grant_type=password&scope=adminapi offline_access&client_id=admin&client_secret=adminsecret`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    });
+  getToken(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
 
-    return this.http
-      .post(url, data, { headers })
-      .pipe(map((response) => response));
+    const body = new HttpParams()
+      .set('username', 'hachihachi')
+      .set('password', '123456789')
+      .set('grant_type', 'password')
+      .set('scope', 'adminapi offline_access')
+      .set('client_id', 'admin')
+      .set('client_secret', 'adminsecret');
+
+    return this.http.post<any>(this.localERP, body.toString(), httpOptions);
   }
 
   // GET ProductList

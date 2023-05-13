@@ -20,7 +20,10 @@
           <hr />
           <div class="content-drawer-right">
             <kendo-label
-              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              *ngIf="
+                StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                StatusToggleDrawer == 'Thêm mới đơn vị con'
+              "
               class="k-form"
               text="Tên đơn vị"
               [for]="input"
@@ -36,7 +39,7 @@
             <kendo-label
               *ngIf="StatusToggleDrawer == 'Thêm mới chức danh'"
               class="k-form"
-              text="Tên đơn vị"
+              text="Tên chức danh"
               [for]="input"
             >
               <input
@@ -49,7 +52,10 @@
 
             <div class="d-flex_between col-gap mt-10">
               <kendo-label
-                *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+                *ngIf="
+                  StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                  StatusToggleDrawer == 'Thêm mới đơn vị con'
+                "
                 class="k-form"
                 text="Mã đơn vị"
                 [for]="input"
@@ -63,7 +69,10 @@
               </kendo-label>
 
               <kendo-label
-                *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+                *ngIf="
+                  StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                  StatusToggleDrawer == 'Thêm mới đơn vị con'
+                "
                 class="k-form"
                 text="Tên viết tắt"
                 [for]="input"
@@ -128,7 +137,10 @@
             </kendo-label>
 
             <kendo-label
-              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              *ngIf="
+                StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                StatusToggleDrawer == 'Thêm mới đơn vị con'
+              "
               class="k-form mt-10 d-block"
               text="Điện thoại"
               [for]="input"
@@ -155,7 +167,10 @@
             </kendo-label>
 
             <kendo-label
-              *ngIf="StatusToggleDrawer == 'Thêm mới đơn vị'"
+              *ngIf="
+                StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                StatusToggleDrawer == 'Thêm mới đơn vị con'
+              "
               class="k-form mt-10 d-block"
               text="Fax"
               [for]="input"
@@ -196,9 +211,26 @@
               (click)="drawerRight.toggle()"
               kendoButton
               [themeColor]="'primary'"
+              *ngIf="
+                StatusToggleDrawer == 'Thêm mới đơn vị' ||
+                  StatusToggleDrawer == 'Thêm mới đơn vị con' ||
+                  StatusToggleDrawer == 'Thêm mới chức danh';
+                else elseAddProduct
+              "
             >
-              CẬP NHẬT
+              THÊM MỚI
             </button>
+            <ng-template #elseAddProduct>
+              <button
+                class="update"
+                kendoButton
+                [themeColor]="'primary'"
+                (click)="drawerRight.toggle()"
+                [style.width]="'auto'"
+              >
+                CẬP NHẬT
+              </button>
+            </ng-template>
           </div>
         </div>
       </ng-template>
@@ -301,6 +333,9 @@
                     align: 'right'
                   }"
                   (itemClick)="Openedpopup($event)"
+                  (click)="
+                    getValueSelectedTreeList(dataItem, dataItem.ListPosition)
+                  "
                 >
                 </kendo-dropdownbutton>
               </div>
