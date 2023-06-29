@@ -7,14 +7,16 @@ import {
 import {
   DepartmentDTO,
   ListDepartment,
-  ObjectReturn,
   ListDataOrgStructureTree,
   ListPosition,
 } from '../../../share/DTO/mock-data';
 import { DrawerComponent } from '@progress/kendo-angular-layout';
 import { ListItemModel } from '@progress/kendo-angular-buttons';
 import { Item } from 'src/app/share/DTO';
-import { SelectableSettings } from '@progress/kendo-angular-treelist';
+import {
+  ExpandEvent,
+  SelectableSettings,
+} from '@progress/kendo-angular-treelist';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -65,7 +67,7 @@ export class OrgStructureComponent implements AfterViewInit {
   selectedWards = this.wards[0];
 
   // Variable TreeList \\
-  public rootData: ObjectReturn[];
+  public rootData: ListDepartment[];
   DtoDepartment = new ListDepartment();
   DtoPosition = new ListPosition();
 
@@ -111,6 +113,8 @@ export class OrgStructureComponent implements AfterViewInit {
     { text: 'abc xyz', value: 2 },
   ];
   public value: any = [{ text: 'Giám đốc', value: 2 }];
+
+  private expandedIds: number[] = [1, 2, 3, 4];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -162,7 +166,7 @@ export class OrgStructureComponent implements AfterViewInit {
 
   selectedTreeList: any[] = [];
 
-  getValueSelectedTreeList(v: ObjectReturn): void {
+  getValueSelectedTreeList(v: ListDepartment): void {
     console.log(v);
   }
 

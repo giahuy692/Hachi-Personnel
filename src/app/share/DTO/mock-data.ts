@@ -521,28 +521,7 @@ export const ListLocationTree = {
 export class DepartmentDTO {
   StatusCode: number;
   ErrorString: string;
-  ObjectReturn: ObjectReturn[];
-}
-
-export class ObjectReturn {
-  StatusName: string;
-  ParentCode: any;
-  ListLocationCode: any;
-  ListLocation: any[];
-  ListDepartment: ListDepartment[];
-  ListPosition: ListPosition[];
-  Code: number;
-  ParentID: number;
-  DepartmentID: string;
-  Department: string;
-  Brieft: any;
-  Phone: any;
-  Fax: any;
-  Remark: any;
-  Config: any;
-  TypeData: number;
-  OrderBy: any;
-  StatusID: number;
+  ObjectReturn: ListDepartment[];
 }
 
 export class ListDepartment {
