@@ -525,24 +525,24 @@ export class DepartmentDTO {
 }
 
 export class ListDepartment {
-  StatusName: string;
-  ParentCode: any;
-  ListLocationCode: any;
-  ListLocation: any[];
-  ListDepartment: ListDepartment[];
-  ListPosition: ListPosition[];
-  Code: number;
-  ParentID: number;
-  DepartmentID: string;
-  Department: string;
   Brieft: any;
-  Phone: any;
-  Fax: any;
-  Remark: any;
+  Code: number;
   Config: any;
-  TypeData: number;
+  Department: string;
+  DepartmentID: string;
+  Fax: any;
+  ListDepartment: ListDepartment[];
+  ListLocation: any[];
+  ListLocationCode: any;
+  ListPosition: ListPosition[];
   OrderBy: any;
+  ParentCode: any;
+  ParentID: number;
+  Phone: any;
+  Remark: any;
   StatusID: number;
+  StatusName: string;
+  TypeData: number;
 }
 
 export class ListPosition {

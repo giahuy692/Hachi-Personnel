@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 // DTO
 import { ProductApi, ProductList } from 'src/app/share/DTO';
@@ -19,11 +20,31 @@ export class ServiceAPIService {
   SearchShare = new Subject<any>();
   tempStatus = new Subject<number>();
   private apiUrl = 'http://test.lapson.vn/api/product/';
+  private localERP = 'http://172.16.10.86:75/erp/';
 
   constructor(private http: HttpClient) {}
   ngOnInit() {}
 
   ngAfterViewInit() {}
+
+  // Hàm lấy token từ API
+  getToken(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
+
+    const body = new HttpParams()
+      .set('username', 'hachihachi')
+      .set('password', '123456789')
+      .set('grant_type', 'password')
+      .set('scope', 'adminapi offline_access')
+      .set('client_id', 'admin')
+      .set('client_secret', 'adminsecret');
+
+    return this.http.post<any>(this.localERP, body.toString(), httpOptions);
+  }
 
   // GET ProductList
   getDataApi() {
@@ -227,5 +248,14 @@ export class ServiceAPIService {
           }
         );
     });
+  }
+
+  checkTypeOfValue(value: any, typeCheck: any) {
+    console.log(value + typeCheck);
+    if (typeCheck === 'string') {
+      return typeof value === 'string';
+    } else if (typeCheck == 'number') {
+      return typeof value === 'number';
+    }
   }
 }

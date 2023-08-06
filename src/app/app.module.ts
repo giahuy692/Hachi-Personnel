@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +60,7 @@ import { PopupModule } from '@progress/kendo-angular-popup';
     DialogsModule,
     LabelModule,
     PopupModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
