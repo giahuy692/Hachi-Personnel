@@ -14,7 +14,6 @@ export class CouponComponent implements OnInit {
   // //icon
   // faCheckCircle = faCheckCircle;
   // faPenSquare = faPenSquare;
-
   // Start: Variable Drawer right  \\
   expandedRight: boolean = false;
   @ViewChild('drawerRight') public DrawerRightComponent: DrawerComponent;
